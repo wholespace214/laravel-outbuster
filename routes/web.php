@@ -13,13 +13,46 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::group(['namespace' => 'App\Http\Controllers'], function()
+{
 
-Route::get('/scripts/{script}', 'ScriptController@show');
+    Route::get('/', 'HomeController@index')->name('home.index');
 
+    Route::get('/category-list', 'CategoryController@index')->name('category.index');
 
-Route::get('/', function () {
-    return view('home');
+    Route::group(['middleware' => ['guest']], function() 
+    {
+        /**
+         * Register Routes
+         */
+        Route::post('/register', 'RegisterController@register')->name('register.perform');
+
+        /**
+         * Login Routes
+         */
+        Route::post('/login', 'LoginController@login')->name('login.perform');
+    });
+
+    Route::group(['middleware' => ['auth']], function() {
+        /**
+         * Logout Routes
+         */
+        Route::get('/logout', 'LoginController@logout')->name('logout.perform');
+
+        /**
+         * Verification Routes
+         */
+        Route::get('/email/verify', 'VerificationController@show')->name('verification.email');
+        Route::get('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify')->middleware(['signed']);
+        Route::post('/email/resend', 'VerificationController@resend')->name('verification.resend');
+    });
+
+    Route::group(['middleware' => ['auth','verified']], function() {
+        /**
+         * Dashboard Routes
+         */
+        Route::get('/account', function () {
+            return view('welcome');
+        });
+    });
 });
