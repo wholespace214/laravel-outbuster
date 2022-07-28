@@ -732,6 +732,9 @@ header {
 .owl-carousel .item {
   overflow: hidden;
 }
+.all-films .owl-carousel {
+  margin-bottom: 0;
+}
 
 /*category css*/
 .categories {
@@ -920,7 +923,7 @@ header {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  padding-bottom: 20px;
+  padding-bottom: 35px;
 }
 .tags h3 {
   font-size: 18px;
@@ -931,8 +934,72 @@ header {
   font-weight: 700;
   color: var(--brand-clr1);
 }
+.critic-container {
+border-bottom: 1px solid #211e31;
+border-top: 1px solid #211e31;
+margin:0 0 35px;
+padding:15px 0 0;
+}
+.critic-wrapper {
+align-items: center;
+display: flex;
+justify-content: space-between;
+}
+.critics-content {
+align-items: center;
+display: flex;
+}
+.critics-content h2.critic-title {
+font-size: 18px;
+margin: 0 20px 0 0;
+padding: 20px 0;
+}
+.critics-content img.critic-logotype {
+margin-right: 20px;
+max-height: 26px
+}
+.complete-criticism {
+margin:0 0 35px;
+}
+.complete-criticism a {
+color: #dcf206;
+font-size: 14px;
+}
+.complete-criticism a:hover {
+text-decoration: underline;
+}
+.pros-container,
+.cons-container
+{
+border-bottom: 1px solid #211e31;
+margin:0 0 35px;
+}
+.pros-wrapper,
+.cons-wrapper
+{
+align-items: center;
+display: flex;
+justify-content: space-between;
+}
+.pros-content,
+.cons-content
+{
+align-items: center;
+display: flex;
+}
+.pros-content h2.pros-title,
+.cons-content h2.cons-title
+{
+font-size: 18px;
+}
+.pros-container .pros,
+.cons-container .cons
+{
+color: #fff;
+margin:0 0 15px;
+}
 .more-videos .title {
-  color: var(--brand-clr1);
+  color: #fff;
 }
 .item-box {
   background-color: #313131;
@@ -945,20 +1012,27 @@ header {
   padding: 16px 10px 50px;
   position: relative;
 }
-.item-detail:before,.item-detail:after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  bottom: 10px;
-  right: 10px;
-  cursor: pointer;
-  background-image: url(../images/plus-icon.png);
+.item-detail:before {
+  background-image: url(../images/heart-icon.png);
   background-size: contain;
+  bottom: 10px;
+  content: '';
+  cursor: pointer;
+  height: 28px;
+  position: absolute;
+  right: 10px;
+  width: 34px;
 }
 .item-detail:after {
-  right: 50px;
   background-image: url(../images/info-btn.png);
+  background-size: contain;
+  bottom: 10px;
+  content: '';
+  cursor: pointer;
+  height: 30px;
+  position: absolute;
+  right: 50px;
+  width: 30px;
 }
 .item-detail h4 {
   padding-bottom: 5px;
@@ -1112,6 +1186,12 @@ header {
   margin-left: 0;
   text-align: left;
   float: left;
+}
+
+/* forgotten-password-pop css*/
+.forgotten-password-pop p {
+  font-size: 14px;
+  text-align: left;
 }
 
 /*my prfile*/

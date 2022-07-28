@@ -26,7 +26,7 @@
 <header>
     <div class="header-main">
         <div class="header-left-part">
-            <a href="#0" class="logo-wrap">
+            <a href="{{ route('account.profile') }}" class="logo-wrap">
                 <img src="assets/images/logo.png" alt="main-logo">
             </a>
             <nav>
@@ -79,18 +79,7 @@
                 <li class="d-block"><a href="#0" class="videos">Mes vidéos</a></li>
                 <li><a href="#0" class="bell-btn"><img src="{!! url('assets/images/bell.png') !!}" alt=""><span>9+</span></a>
                 </li>
-                <li><a href="#0" class="go-to-profile"><img src="{!! url('assets/images/profile-image.png') !!} " alt=""></a>
-                    <ul class="profile-option dropdown">
-                        <li><a href="#0">Mon abonnement</a></li>
-                        <li><a href="#0">Mon parrainage</a></li>
-                        <li><a href="#0">Mon profil</a></li>
-                        <li><a href="#0">Ma playlist</a></li>
-                        <li><a href="#0">Mes paiements</a></li>
-                        <li><a href="#0">Mes téléchargements</a></li>
-                        <li><a href="#0">Gestion des profils</a></li>
-                        <li><a href="{{ route('logout.perform') }}">Se déconnecter</a></li>
-                    </ul>
-                </li>
+                @include('layouts.account-list')
                 <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
             </ul>
         @endauth

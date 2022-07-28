@@ -82,11 +82,11 @@
                     placeholder="Email">
                 <input type="password" class="form-control" required="" name="password" id="password"
                     placeholder="Mot de passe">
-                <a href="#0" class="forgot-password">Mot de passe oublié ?</a>
+                <a href="#0" class="forgot-password forgotten-password-btn">Mot de passe oublié ?</a>
                 <button type="submit" class="form-control btn" name="submit">S’identifier</button>
                 <div class="form-group">
                     <div class="checkbox-div">
-                        <input class="custom-checkbox" id="identity" type="checkbox" value="value1">
+                        <input class="custom-checkbox" id="identity" type="checkbox" name="remember" value="1">
                         <label class="checkbox-lebel" for="identity">Se souvenir de moi</label>
                     </div>
                     <a href="#0" class="help">besoin d'aide ?</a>
@@ -126,6 +126,22 @@
                 </div>
                 <p>Cette page est protégée par Google reCAPTCHA <br>pour nous assurer que vous n'êtes pas un robot. </p>
                 <button type="submit" class="form-control btn" name="submit">S’identifier</button>
+            </form>
+        </div>
+
+        <!-- forgotten password popup-->
+        <div class="forgotten-password-pop popup">
+            <h1 class="form-title">Mot de passe oublié ?</h1>
+            <p class="forgotten-password-text">
+                Veuillez saisir votre adresse email personnelle
+                dans le formulaire ci-dessous, un lien va être
+                envoyé afin de réinitialiser votre mot de passe.
+            </p>
+            <form name="myForm" class="form" action="{{ route('forget') }}" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                <input type="text" class="form-control" required="" name="email" id="email"
+                    placeholder="Email">
+                <button type="submit" class="form-control btn" name="submit">Valider</button>
             </form>
         </div>
     @endsection

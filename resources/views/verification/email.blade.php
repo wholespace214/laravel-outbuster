@@ -68,9 +68,13 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td width="20"></td>
-                                                                            <td><a href="#0"
+                                                                            <td>
+                                                                                @csrf
+                                                                                <a type='submit'
                                                                                     style="text-decoration: none; font-size: 16px;color: #0a0a10;">https://www.Lien
-                                                                                    lorem ipsum......</a></td>
+                                                                                    lorem ipsum......</a>
+                                                                                </form>
+                                                                            </td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td height="10"></td>

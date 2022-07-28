@@ -26,11 +26,16 @@ $(document).ready(function() {
     e.stopPropagation();
     $('.login-pop').addClass('show');
     $('.signup-pop').removeClass('show');
+    $('.forgotten-password-pop').removeClass('show');
     $('header').removeClass('open-navigation');
   });
   $('.inscription-btn').click(function(e) {
     e.stopPropagation();
     $('.signup-pop').addClass('show');
+  });
+  $('.forgotten-password-btn').click(function(e) {
+    e.stopPropagation();
+    $('.forgotten-password-pop').addClass('show');
   });
   $('.search-btn').click(function(e) {
     e.stopPropagation();
@@ -38,13 +43,16 @@ $(document).ready(function() {
     $('header').removeClass('open-navigation');
     $('html').removeClass('overflow');
   });
-  $('.signup-pop, .login-pop, .payment-pop, .search-pop').click(function(e) {
+  $('.signup-pop, .login-pop, .payment-pop, .search-pop, .forgotten-password-pop').click(function(e) {
     e.stopPropagation();
   });
   $(document).click(function() {
-    $('.signup-pop, .login-pop, .payment-pop, .search-pop').removeClass('show');
+    $('.signup-pop, .login-pop, .payment-pop, .search-pop, .forgotten-password-pop').removeClass('show');
   });
   $('.inscription-btn').click(function() {
+    $('.login-pop').removeClass('show');
+  });
+  $('.forgotten-password-btn').click(function() {
     $('.login-pop').removeClass('show');
   });
   $('.delete').click(function(e) {
