@@ -50,7 +50,8 @@
                     <div class="extra-form">
                         <div class="form-group">
                             <label for="">Date de naissance :</label>
-                            <input type="text" value="{{ auth()->user()->date_of_birth->format('d-m-Y') }}"
+                            <input type="text"
+                                value="{{ auth()->user()->date_of_birth? auth()->user()->date_of_birth->format('d-m-Y'): '' }}"
                                 class="form-control" name="date_of_birth" placeholder="Pseudo">
                         </div>
                         <div class="form-group">
