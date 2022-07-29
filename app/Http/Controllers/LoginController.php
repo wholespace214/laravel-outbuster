@@ -4,46 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
     /**
      * Handle account login request
-     * 
-     * @param LoginRequest $request
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function login(LoginRequest $request)
-    {
-        $credentials = $request->getCredentials();
-
-        if(!Auth::validate($credentials)):
-            return redirect()->to('/')
-                ->withErrors(trans('/'));
-        endif;
-
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        Auth::login($user);
-
-        return $this->authenticated($request, $user);
-    }
-
-    /**
-     * Handle response after user authenticated
-     * 
+     *
      * @param Request $request
-     * @param Auth $user
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
-    protected function authenticated(Request $request, $user) 
+    public function login(Request $request)
     {
-        return redirect()->intended();
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',   // required and email format validation
+            'password' => 'required', // required and number field validation
+
+        ]); // create the validations
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return response()->json($validator->errors(),422);
+            // validation failed return with 422 status
+
+        } else {
+            //validations are passed try login using laravel auth attemp
+            if (Auth::attempt($request->only(["email", "password"]))) {
+                return response()->json(["status"=>true,"redirect_location"=>url("/account/profile")]);
+
+            } else {
+                return response()->json([["Invalid credentials"]],422);
+
+            }
+        }
     }
 
     /**
@@ -54,7 +49,7 @@ class LoginController extends Controller
     public function logout()
     {
         Session::flush();
-        
+
         Auth::logout();
 
         return redirect('/');

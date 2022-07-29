@@ -18,6 +18,11 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{!! url('assets/css/owl.carousel.css') !!}">
     <link rel="stylesheet" href="{!! url('assets/css/styles.css') !!}" type="text/css" media="all">
+
+    <!-- Outbuster Scripts -->
+    <script src="{!! url('assets/js/jquery.min.js') !!}"></script>
+    <script src="{!! url('assets/js/owl.carousel.min.js') !!}"></script>
+    <script src="{!! url('assets/js/scripts.js') !!}"></script>
 </head>
 
 @yield('body')
@@ -27,7 +32,7 @@
     <div class="header-main">
         <div class="header-left-part">
             <a href="{{ route('account.profile') }}" class="logo-wrap">
-                <img src="assets/images/logo.png" alt="main-logo">
+                <img src=" {!! url('assets/images/logo.png') !!} " alt="main-logo">
             </a>
             <nav>
                 <ul class="navigation">
@@ -58,8 +63,8 @@
                             <li><a href="#0">Se déconnecter</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item d-none"><a href="#0" class="btn"><img
-                                src=" assets/images/btn-image.png" alt="">ESSAI GRATUIT</a></li>
+                    <li class="menu-item d-none"><a href="#0" class="btn"><img src="assets/images/btn-image.png"
+                                alt="">ESSAI GRATUIT</a></li>
                     <li class="menu-item d-none"><a href="#0" class="search-btn"><img
                                 src="assets/images/search.png" alt="">Recherche</a></li>
                     <li class="menu-item d-none"><a href="#0" class="btn user-login-btn">S’identifier</a></li>
@@ -77,7 +82,8 @@
                 <li class="d-block"><a href="#0" class="search-btn"><img src="{!! url('assets/images/search.png') !!} "
                             alt="">Recherche</a></li>
                 <li class="d-block"><a href="#0" class="videos">Mes vidéos</a></li>
-                <li><a href="#0" class="bell-btn"><img src="{!! url('assets/images/bell.png') !!}" alt=""><span>9+</span></a>
+                <li><a href="#0" class="bell-btn"><img src="{!! url('assets/images/bell.png') !!}"
+                            alt=""><span>9+</span></a>
                 </li>
                 @include('layouts.account-list')
                 <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
@@ -110,10 +116,6 @@
     </form>
 </div>
 
-<!-- Outbuster Scripts -->
-<script src="{!! url('assets/js/jquery.min.js') !!}"></script>
-<script src="{!! url('assets/js/owl.carousel.min.js') !!}"></script>
-<script src="{!! url('assets/js/scripts.js') !!}"></script>
 <script>
     $(document).ready(function() {
         //Owl Carousel Script

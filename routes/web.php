@@ -20,6 +20,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     Route::get('/category-list', 'CategoryController@index')->name('category.index');
 
+    Route::get('/category-list/{id}', 'CategoryController@showFilm')->name('category.showfilm');
+
     Route::group(['middleware' => ['guest']], function()
     {
         /**

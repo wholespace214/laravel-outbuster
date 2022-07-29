@@ -6,12 +6,12 @@
                         </h2>
                     </div>
                     <div class="owl-carousel owl-theme">
-                        <div class="item"><img src="assets/images/slider-img1.jpg" alt="Video"></div>
-                        <div class="item"><img src="assets/images/slider-img2.jpg" alt="Video"></div>
-                        <div class="item"><img src="assets/images/slider-img3.jpg" alt="Video"></div>
-                        <div class="item"><img src="assets/images/slider-img4.jpg" alt="Video"></div>
-                        <div class="item"><img src="assets/images/slider-img5.jpg" alt="Video"></div>
-                        <div class="item"><img src="assets/images/slider-img6.jpg" alt="Video"></div>
+                        <div class="item"><img src="{!! url('assets/images/slider-img1.jpg') !!}" alt="Video"></div>
+                        <div class="item"><img src="{!! url('assets/images/slider-img1.jpg') !!}" alt="Video"></div>
+                        <div class="item"><img src="{!! url('assets/images/slider-img1.jpg') !!}" alt="Video"></div>
+                        <div class="item"><img src="{!! url('assets/images/slider-img1.jpg') !!}" alt="Video"></div>
+                        <div class="item"><img src="{!! url('assets/images/slider-img1.jpg') !!}" alt="Video"></div>
+                        <div class="item"><img src="{!! url('assets/images/slider-img1.jpg') !!}" alt="Video"></div>
                     </div>
                 </div>
             </section>

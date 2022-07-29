@@ -76,9 +76,10 @@
         <!-- login popup-->
         <div class="login-pop popup">
             <h1 class="form-title">S’identifier</h1>
-            <form method="post" name="myForm" class="form" action="{{ route('login.perform') }}">
+            {{-- <div id="errors-list"></div> --}}
+            <form method="post" name="myForm" id="login" class="form" action="{{ route('login.perform') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                <input type="text" class="form-control" required="" name="username" id="email"
+                <input type="text" class="form-control" required="" name="email" id="email"
                     placeholder="Email">
                 <input type="password" class="form-control" required="" name="password" id="password"
                     placeholder="Mot de passe">
@@ -100,28 +101,29 @@
         <!-- sign-up popup-->
         <div class="signup-pop popup">
             <h1 class="form-title">Inscription OUTBUSTER</h1>
-            <form name="myForm" method="post" class="form" action="{{ route('register.perform') }}">
+            {{-- <div id="register-errors-list"></div> --}}
+            <form name="myForm" method="post" id="register" class="form" action="{{ route('register.perform') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div class="row">
                     <div class="col-12">
-                        <input type="text" class="form-control" required="" name="username" id="name"
+                        <input type="text" class="form-control" required="" name="username" id="rusername"
                             placeholder="Pseudo" autocomplete="off">
                     </div>
                     <div class="col-6">
-                        <input type="text" class="form-control" required="" name="email" id="email"
+                        <input type="text" class="form-control" required="" name="email" id="remail"
                             placeholder="email">
                     </div>
                     <div class="col-6">
                         <input type="text" class="form-control" required="" name="email_confirmation"
-                            id="cEmail" placeholder="Confirmation - Email">
+                            id="remail_confirmation" placeholder="Confirmation - Email">
                     </div>
                     <div class="col-6">
-                        <input type="password" class="form-control" required="" name="password" id="password"
+                        <input type="password" class="form-control" required="" name="password" id="rpassword"
                             placeholder="Mot de passe">
                     </div>
                     <div class="col-6">
-                        <input type="password" class="form-control" name="password_confirmation" id="cPassword"
-                            placeholder="Confirmation - Mot de passe">
+                        <input type="password" class="form-control" name="password_confirmation"
+                            id="rpassword_confirmation" placeholder="Confirmation - Mot de passe">
                     </div>
                 </div>
                 <p>Cette page est protégée par Google reCAPTCHA <br>pour nous assurer que vous n'êtes pas un robot. </p>
@@ -138,10 +140,113 @@
                 envoyé afin de réinitialiser votre mot de passe.
             </p>
             <form name="myForm" class="form" action="{{ route('forget') }}" method="post">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <input type="text" class="form-control" required="" name="email" id="email"
                     placeholder="Email">
                 <button type="submit" class="form-control btn" name="submit">Valider</button>
             </form>
         </div>
+
+
+        <script>
+            $(function() {
+                // handle submit event of form
+                $(document).on("submit", "#login", function() {
+                    var e = this;
+                    // change login button text before ajax
+                    // $(this).find("[type='submit']").html("LOGIN...");
+
+                    $.post($(this).attr('action'), $(this).serialize(), function(data) {
+
+                        // $(e).find("[type='submit']").html("LOGIN");
+                        if (data.status) { // If success then redirect to login url
+                            window.location = data.redirect_location;
+                        }
+                    }).fail(function(response) {
+                        // handle error and show in html
+                        // $(e).find("[type='submit']").html("LOGIN");
+                        $(".alert").remove();
+                        var erroJson = JSON.parse(response.responseText);
+                        // alert(erroJson)
+                        for (var err in erroJson) {
+                            if (err == "email") {
+                                $("#email").addClass("border-red");
+                            } else if (err == "password") {
+                                $("#password").addClass("border-red");
+                            } else {
+                                $("#email").addClass("border-red");
+                                $("#password").addClass("border-red");
+                            }
+                            for (var errstr of erroJson[err])
+                                $("#errors-list").append("<div class='alert alert-danger'>" + errstr +
+                                    "</div>");
+                        }
+
+                    });
+                    return false;
+                });
+
+                $(document).on("submit", "#register", function() {
+                    var e = this;
+                    // change register button text before ajax
+                    // $(this).find("[type='submit']").html("Register...");
+
+                    $.post($(this).attr('action'), $(this).serialize(), function(data) {
+
+                        // $(e).find("[type='submit']").html("REGISTER");
+                        if (data.status) { // If success then redirect to login url
+                            window.location = data.redirect_location;
+                        }
+                    }).fail(function(response) {
+                        // handle error and show in html
+                        // $(e).find("[type='submit']").html("REGISTER");
+                        $(".alert").remove();
+                        var erroJson = JSON.parse(response.responseText);
+                        // alert(erroJson)
+                        for (var err in erroJson) {
+                            alert(err);
+                            if (err == "email") {
+                                $("#remail").addClass("border-red");
+                            } else if (err == "password") {
+                                $("#rpassword").addClass("border-red");
+                            } else if (err == "password_confirmation") {
+                                $("#rpassword_confirmation").addClass("border-red");
+                            } else if (err == "username") {
+                                $("#rusername").addClass("border-red");
+                            } else {
+                                $("#remail").addClass("border-red");
+                                $("#remail_confirmation").addClass("border-red");
+                                $("#rpassword").addClass("border-red");
+                                $("#rusername").addClass("border-red");
+                                $("#rpassword_confirmation").addClass("border-red");
+                            }
+                            for (var errstr of erroJson[err])
+                                $("#register-errors-list").append("<div class='alert alert-danger'>" +
+                                    errstr +
+                                    "</div>");
+                        }
+
+                    });
+                    return false;
+                });
+
+                $("#email").on("change", function() {
+                    $(this).removeClass("border-red");
+                })
+                $("#password").on("change", function() {
+                    $(this).removeClass("border-red");
+                })
+            });
+        </script>
+
+        <style>
+            .alert {
+                margin-bottom: 10px;
+                color: red;
+            }
+
+            .border-red {
+                border: 1px solid red !important;
+            }
+        </style>
     @endsection
