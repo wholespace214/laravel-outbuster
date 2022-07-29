@@ -29,6 +29,7 @@ class Films extends Migration
             $table->string('film_cover')->nullable();
             $table->string('film_trailer')->nullable();
             $table->string('film_master_file')->nullable();
+            $table->boolean('home')->nullable();
             $table->timestamps();
         });
     }
