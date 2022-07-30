@@ -50,13 +50,20 @@
                     <div class="extra-form">
                         <div class="form-group">
                             <label for="">Date de naissance :</label>
-                            <input type="text" value="{{ auth()->user()->date_of_birth }}" class="form-control"
-                                name="date_of_birth" placeholder="Pseudo">
+                            <input type="text"
+                                value="{{ auth()->user()->date_of_birth? auth()->user()->date_of_birth->format('d-m-Y'): '' }}"
+                                class="form-control" name="date_of_birth" placeholder="Pseudo">
                         </div>
                         <div class="form-group">
                             <label for="">Sexe :</label>
-                            <input type="text" value="{{ auth()->user()->gender }}" class="form-control" name="gender"
-                                placeholder="Pseudo">
+                            <select name="gender" id="" class="form-control">
+                                <option></option>
+                                <option {{ auth()->user()->gender == 'Homme' ? 'selected' : '' }} value="Homme">
+                                    Homme</option>
+                                <option value="Womme" {{ auth()->user()->gender == 'Womme' ? 'selected' : '' }}>
+                                    Womme
+                                </option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="">Pays :</label>
