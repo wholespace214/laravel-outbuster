@@ -12,6 +12,9 @@ class HomeController extends Controller
     public function index()
     {
         $film = Film::where('home', 1)->get();
+        if(!$film){
+            
+        }
         return view('home', ['film' => $film[0] ]);
     }
 }

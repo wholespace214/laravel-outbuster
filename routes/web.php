@@ -22,6 +22,16 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     Route::get('/category-list/{id}', 'CategoryController@showFilm')->name('category.showfilm');
 
+    /**
+     * Film Info Get Routes
+     */
+    Route::get('/film/info/{id}', 'FilmController@filmInfo')->name('film.info');
+
+    /**
+     * Film Details Get Routes
+     */
+    Route::get('/film/details/{id}', 'FilmController@filmDetails')->name('film.details');
+
     Route::group(['middleware' => ['guest']], function()
     {
         /**
